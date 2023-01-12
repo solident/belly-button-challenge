@@ -1,3 +1,4 @@
+
 function buildCharts(sample) {
 
     // variable allocation with d3
@@ -32,7 +33,6 @@ var LayoutBubble = {
   ];
 
   Plotly.newPlot("bubble", DataBubble, LayoutBubble);
-
 
 //Bar
 var bar_data =[
@@ -80,20 +80,6 @@ function optionChanged(newSample) {
 //fetch new data each time
 buildCharts(newSample);
 buildMetadata(newSample);
-}
-//Metadata
-function buildMetadata(sample) {
-  d3.json("samples.json").then((data) => {
-    var metadata= data.metadata;
-    var resultsarray= metadata.filter(sampleobject => 
-      sampleobject.id == sample);
-    var result= resultsarray[0]
-    var panel = d3.select("#sample-metadata");
-    panel.html("");
-    Object.entries(result).forEach(([key, value]) => {
-      panel.append("h6").text(`${key}: ${value}`);
-    });
-  });
 }
 init();
 
